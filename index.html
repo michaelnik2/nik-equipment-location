@@ -1,56 +1,11 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Nik Group - Equipment Asset 1099</title>
-<style>
-*{box-sizing:border-box}
-body{font-family:Arial,sans-serif;margin:0;background:#062f63;color:white;text-align:center}
-.card{max-width:620px;margin:0 auto;padding:28px 18px 40px}
-h1{font-size:28px;margin:14px 0 6px}.label{font-size:18px}.asset{font-size:58px;font-weight:900;margin:8px 0 18px}
-.instruction{font-size:26px;font-weight:900;line-height:1.15;margin:18px 0 4px}
-.instruction-es{font-size:20px;font-weight:800;line-height:1.2;margin:0 0 8px}
-.arrow{font-size:58px;line-height:1;margin:2px 0 6px}
-button{background:#20a447;color:white;font-size:27px;font-weight:900;line-height:1.15;padding:24px 16px;border:5px solid white;border-radius:16px;width:100%;margin-top:4px;box-shadow:0 7px 0 #0b6b2a;cursor:pointer}
-button:active{transform:translateY(4px);box-shadow:0 3px 0 #0b6b2a}
-.button-es{display:block;font-size:19px;margin-top:8px}
-.after{font-size:17px;font-weight:700;line-height:1.35;margin:22px 8px 0}
-#status{margin-top:22px;font-size:20px;font-weight:800;line-height:1.35}
-</style>
-</head>
-<body>
-<div class="card">
-<h1>THE NIK GROUP</h1>
-<div class="label">EQUIPMENT ASSET</div>
-<div class="asset">1099</div>
-
-<div class="instruction">STEP 1: TAP THE GREEN BUTTON</div>
-<div class="instruction-es">PASO 1: TOQUE EL BOTÓN VERDE</div>
-<div class="arrow">⬇️</div>
-
-<button onclick="sendLocation()">
-📍 TAP HERE TO SEND LOCATION
-<span class="button-es">TOQUE AQUÍ PARA ENVIAR UBICACIÓN</span>
-</button>
-
-<div class="after">STEP 2: When your phone asks, tap <b>ALLOW</b> for location.<br>Luego toque <b>PERMITIR</b> cuando el teléfono pida acceso a su ubicación.</div>
-<div id="status"></div>
-</div>
-<script>
-function sendLocation(){
- const s=document.getElementById('status');
- if(!navigator.geolocation){s.textContent='Location is not supported on this phone. / Este teléfono no permite ubicación.';return;}
- s.textContent='📍 Getting your location... / Obteniendo su ubicación...';
- navigator.geolocation.getCurrentPosition(function(p){
-   const lat=p.coords.latitude.toFixed(6), lon=p.coords.longitude.toFixed(6);
-   const maps='https://maps.google.com/?q='+lat+','+lon;
-   const body='THE NIK GROUP - EQUIPMENT ASSET 1099\nCURRENT EQUIPMENT LOCATION:\n'+maps+'\n\nUBICACION ACTUAL DEL EQUIPO:\n'+maps;
-   window.location.href='sms:8186403863?body='+encodeURIComponent(body);
- },function(){
-   s.textContent='⚠️ Tap ALLOW for location access, then try again. / Toque PERMITIR para la ubicación y vuelva a intentar.';
- },{enableHighAccuracy:true,timeout:15000,maximumAge:0});
-}
-</script>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Nik Group - Equipment Asset 1099</title>
+<style>*{box-sizing:border-box}body{font-family:Arial,sans-serif;margin:0;background:#062f63;color:#fff;text-align:center}.card{max-width:620px;margin:auto;padding:26px 18px 40px}h1{font-size:28px;margin:12px 0 5px}.label{font-size:18px}.asset{font-size:58px;font-weight:900;margin:6px 0 18px}.instruction{font-size:25px;font-weight:900;line-height:1.15;margin:14px 0 4px}.es{font-size:19px;font-weight:800}.arrow{font-size:48px;margin:3px}.get{background:#ffd43b;color:#082d60;border:5px solid #fff}.choice{display:none;margin-top:22px}.wa{background:#20a447;color:#fff;border:5px solid #fff}.sms{background:#fff;color:#062f63;border:5px solid #9dc4ff}button{font-size:25px;font-weight:900;line-height:1.15;padding:21px 12px;border-radius:16px;width:100%;margin:8px 0;cursor:pointer}.small{display:block;font-size:17px;margin-top:6px}.status{font-size:18px;font-weight:800;margin-top:16px;line-height:1.3}</style></head>
+<body><div class="card"><h1>THE NIK GROUP</h1><div class="label">EQUIPMENT ASSET</div><div class="asset">1099</div>
+<div class="instruction">STEP 1: GET EQUIPMENT LOCATION</div><div class="es">PASO 1: OBTENER UBICACIÓN</div><div class="arrow">⬇️</div>
+<button class="get" onclick="getLocation()">📍 TAP HERE FIRST<span class="small">TOQUE AQUÍ PRIMERO</span></button>
+<div id="status" class="status"></div>
+<div id="choice" class="choice"><div class="instruction">STEP 2: CHOOSE HOW TO SEND</div><div class="es">PASO 2: ELIJA CÓMO ENVIAR</div>
+<button class="wa" onclick="sendWA()">🟢 SEND WITH WHATSAPP<span class="small">ENVIAR POR WHATSAPP</span></button>
+<button class="sms" onclick="sendSMS()">💬 SEND WITH TEXT MESSAGE<span class="small">ENVIAR POR MENSAJE DE TEXTO</span></button></div></div>
+<script>let body='';function getLocation(){const s=document.getElementById('status');s.textContent='Getting location... / Obteniendo ubicación...';navigator.geolocation.getCurrentPosition(function(p){const lat=p.coords.latitude.toFixed(6),lon=p.coords.longitude.toFixed(6),maps='https://maps.google.com/?q='+lat+','+lon;body='THE NIK GROUP - EQUIPMENT ASSET 1099\nCURRENT EQUIPMENT LOCATION:\n'+maps+'\n\nUBICACION ACTUAL DEL EQUIPO:\n'+maps;s.textContent='✅ LOCATION READY / UBICACIÓN LISTA';document.getElementById('choice').style.display='block';},function(){s.textContent='⚠️ TAP ALLOW FOR LOCATION, THEN TRY AGAIN. / TOQUE PERMITIR Y VUELVA A INTENTAR.';},{enableHighAccuracy:true,timeout:15000,maximumAge:0});}function sendWA(){window.location.href='https://wa.me/18186403863?text='+encodeURIComponent(body)}function sendSMS(){window.location.href='sms:8186403863?body='+encodeURIComponent(body)}</script></body></html>
