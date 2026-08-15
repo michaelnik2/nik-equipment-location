@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Nik Group - Equipment Asset 1099</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#062f63;color:white;text-align:center}
+.card{max-width:560px;margin:30px auto;padding:28px}
+h1{font-size:25px} .asset{font-size:44px;font-weight:800;margin:12px}
+button{font-size:22px;font-weight:700;padding:18px 24px;border:0;border-radius:10px;width:100%;margin-top:15px}
+.note{font-size:15px;line-height:1.4;margin-top:18px}
+#status{margin-top:18px;font-size:17px}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>THE NIK GROUP</h1>
+<div>EQUIPMENT ASSET</div>
+<div class="asset">1099</div>
+<p>Please send the current location of this equipment.</p>
+<p>Por favor envie la ubicacion actual de este equipo.</p>
+<button onclick="sendLocation()">SEND EQUIPMENT LOCATION<br>ENVIAR UBICACION</button>
+<div id="status"></div>
+</div>
+<script>
+function sendLocation(){
+ const s=document.getElementById('status');
+ if(!navigator.geolocation){s.textContent='Location is not supported on this phone.';return;}
+ s.textContent='Getting location... / Obteniendo ubicacion...';
+ navigator.geolocation.getCurrentPosition(function(p){
+   const lat=p.coords.latitude.toFixed(6), lon=p.coords.longitude.toFixed(6);
+   const maps='https://maps.google.com/?q='+lat+','+lon;
+   const body='THE NIK GROUP - EQUIPMENT ASSET 1099\nCURRENT EQUIPMENT LOCATION:\n'+maps+'\n\nUBICACION ACTUAL DEL EQUIPO:\n'+maps;
+   window.location.href='sms:8186403863?body='+encodeURIComponent(body);
+ },function(){
+   s.textContent='Please allow location access. / Por favor permita acceso a su ubicacion.';
+ },{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+}
+</script>
+</body>
+</html>
